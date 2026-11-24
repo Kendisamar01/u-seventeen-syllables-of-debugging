@@ -1,17 +1,19 @@
 from pathlib import Path
 
-HAIKU = (
-    "Cursor blinks at three\n"
-    "the log line swears it is clean\n"
-    "I left that line in"
+LINES = (
+    "Cursor blinks at three",
+    "one log line swears it is clean",
+    "I left that line in",
 )
 
+ENTRY = "\n".join(LINES)
+OUTPUT = Path("/output/entry.txt")
 
-def main():
-    path = Path("/output/entry.txt")
+
+def write_entry(path: Path = OUTPUT) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(HAIKU, encoding="utf-8")
+    path.write_text(ENTRY + "\n", encoding="utf-8")
 
 
 if __name__ == "__main__":
-    main()
+    write_entry()
